@@ -1,7 +1,8 @@
-import { PersonasServices } from './../personas.service';
-import { LoggingService } from './../LoggingService.service';
+import { Router } from '@angular/router';
+import { PersonasServices } from '../../personas.service';
+import { LoggingService } from '../../LoggingService.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Persona } from '../persona.model';
+import { Persona } from '../../persona.model';
 
 @Component({
   selector: 'app-formulario',
@@ -14,20 +15,19 @@ export class FormularioComponent implements OnInit {
   apellidoInput: string;
 
   constructor(private loggingService: LoggingService,
-    private personasServices: PersonasServices) {
+              private personasServices: PersonasServices,
+              private router: Router) {
     this.personasServices.saludar.subscribe(
-      (indice: number) => alert("el indice es: " + indice)
+      (indice: number) => alert('el indice es: ' + indice)
     );
   }
 
   ngOnInit() {
   }
 
-  onAgregaPersona() {
+  onGuardarPersona() {
     const persona1 = new Persona(this.nombreInput, this.apellidoInput);
-    //this.loggingService.enviaMensajeAConsola("Enviamos persona " + persona1.nombre + " " + persona1.apellido);
-    //this.personas.push(persona1);
-    //enviar info a componente padre
-    this.personaCreada.emit(persona1);
+    this.personasServices.agregarPersona(persona1);
+    this.router.navigate(['personas']);
   }
 }

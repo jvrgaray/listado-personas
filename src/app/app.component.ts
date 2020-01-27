@@ -10,19 +10,7 @@ import { Persona } from './persona.model';
 })
 export class AppComponent implements OnInit {
   title = 'listado de personas';
-  personas: Persona[] = [];
-
-  constructor(private loggingService: LoggingService,
-    private personasServices: PersonasServices) {
-  }
 
   ngOnInit(): void {
-    this.personas = this.personasServices.personas;
-  }
-
-  onPersonaAgregada(persona: Persona) {
-    //this.loggingService.enviaMensajeAConsola("Agregamos al arreglo la nueva persona: "+persona.nombre);
-    //this.personas.push(persona);
-    this.personasServices.agregarPersona(persona);
   }
 }

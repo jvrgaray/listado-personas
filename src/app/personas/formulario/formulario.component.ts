@@ -3,6 +3,7 @@ import { PersonasServices } from '../../personas.service';
 import { LoggingService } from '../../LoggingService.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Persona } from '../../persona.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-formulario',
@@ -39,6 +40,13 @@ export class FormularioComponent implements OnInit {
       this.personasServices.modificarPersona(this.index, persona1);
     } else {
       this.personasServices.agregarPersona(persona1);
+    }
+    this.router.navigate(['personas']);
+  }
+
+  eliminarPersona() {
+    if(this.index != null){
+      this.personasServices.eliminarPersona(this.index);
     }
     this.router.navigate(['personas']);
   }

@@ -1,3 +1,4 @@
+import { ErrorComponent } from './../error/error.component';
 import { FormularioComponent } from './../personas/formulario/formulario.component';
 import { PersonasComponent } from './../personas/personas.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ const routes: Routes = [
       { path: 'agregar', component: FormularioComponent },
       { path: ':id', component: FormularioComponent } // editar
     ]
-  }
+  },
+  { path: '**', component: ErrorComponent }
 
 ];
 

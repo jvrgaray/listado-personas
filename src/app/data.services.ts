@@ -1,10 +1,12 @@
+import { LoginService } from './login/login.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Persona } from './persona.model';
 
 @Injectable()
 export class DataServices {
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private loginService: LoginService) { }
 
   // guardar personas
   guardarPersonas(personas: Persona[]) {
@@ -17,7 +19,8 @@ export class DataServices {
   }
 
   cargarPersonas() {
-    return this.httpClient.get('https://listado-personas-1d4a5.firebaseio.com/datos.json');
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get('https://listado-personas-1d4a5.firebaseio.com/datos.json?auth=' + token);
   }
 
   modificarPersona(index: number, persona: Persona) {

@@ -1,3 +1,4 @@
+import { LoginService } from './login/login.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { PersonasServices } from './personas.service';
 import { LoggingService } from './LoggingService.service';
@@ -29,7 +30,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [LoggingService, PersonasServices, DataServices],
+  providers: [LoggingService, PersonasServices, DataServices, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,11 +10,11 @@ export class PersonasServices {
   saludar = new EventEmitter<number>();
 
   constructor(private loggingService: LoggingService,
-              private dataServices: DataServices) { }
+    private dataServices: DataServices) { }
 
   agregarPersona(persona: Persona) {
     this.loggingService.enviaMensajeAConsola("agregamos persona: " + persona.nombre);
-    if(this.personas == null) {
+    if (this.personas == null) {
       this.personas = [];
     }
     this.personas.push(persona);
@@ -34,13 +34,22 @@ export class PersonasServices {
 
   eliminarPersona(index: number) {
     this.personas.splice(index, 1);
+    this.dataServices.eliminarPersona(index);
+    // reordenar los indices en la base de datos
+    this.modificarPersonas();
   }
 
   obtenerPersonas() {
     return this.dataServices.cargarPersonas();
   }
 
-  setPersonas(personas:Persona[]) {
+  setPersonas(personas: Persona[]) {
     this.personas = personas;
+  }
+
+  modificarPersonas() {
+    if (this.personas != null) {
+      this.dataServices.guardarPersonas(this.personas);
+    }
   }
 }

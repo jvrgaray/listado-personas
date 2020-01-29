@@ -19,4 +19,14 @@ export class DataServices {
   cargarPersonas() {
     return this.httpClient.get('https://listado-personas-1d4a5.firebaseio.com/datos.json');
   }
+
+  modificarPersona(index: number, persona: Persona) {
+    let url: string;
+    url = 'https://listado-personas-1d4a5.firebaseio.com/datos/' + index + '.json';
+    this.httpClient.put(url, persona).subscribe(
+      response => console.log('resultado modificar Persona: ' + response)
+      ,
+      error => console.log('Error en modificar Persona: ' + error)
+    );
+  }
 }

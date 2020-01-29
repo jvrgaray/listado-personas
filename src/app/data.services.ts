@@ -10,7 +10,8 @@ export class DataServices {
 
   // guardar personas
   guardarPersonas(personas: Persona[]) {
-    this.httpClient.put('https://listado-personas-1d4a5.firebaseio.com/datos.json', personas).subscribe(
+    const token = this.loginService.getIdToken();
+    this.httpClient.put('https://listado-personas-1d4a5.firebaseio.com/datos.json?auth=' + token, personas).subscribe(
       response =>
         console.log('resultado de guardar las personas: ' + response)
       ,
@@ -24,8 +25,9 @@ export class DataServices {
   }
 
   modificarPersona(index: number, persona: Persona) {
+    const token = this.loginService.getIdToken();
     let url: string;
-    url = 'https://listado-personas-1d4a5.firebaseio.com/datos/' + index + '.json';
+    url = 'https://listado-personas-1d4a5.firebaseio.com/datos/' + index + '.json?auth=' + token;
     this.httpClient.put(url, persona).subscribe(
       response => console.log('resultado modificar Persona: ' + response)
       ,
@@ -34,8 +36,9 @@ export class DataServices {
   }
 
   eliminarPersona(index: number) {
+    const token = this.loginService.getIdToken();
     let url: string;
-    url = 'https://listado-personas-1d4a5.firebaseio.com/datos/' + index + '.json';
+    url = 'https://listado-personas-1d4a5.firebaseio.com/datos/' + index + '.json?auth=' + token;
     this.httpClient.delete(url).subscribe(
       response => console.log('resultado eliminar Persona: ' + response)
       ,

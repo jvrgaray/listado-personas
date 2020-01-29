@@ -1,3 +1,4 @@
+import { LoginComponent } from './../login/login.component';
 import { ErrorComponent } from './../error/error.component';
 import { FormularioComponent } from './../personas/formulario/formulario.component';
 import { PersonasComponent } from './../personas/personas.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: ':id', component: FormularioComponent } // editar
     ]
   },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: ErrorComponent }
 
 ];

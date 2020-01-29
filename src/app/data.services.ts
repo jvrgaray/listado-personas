@@ -14,6 +14,9 @@ export class DataServices {
       ,
       error => console.log('Error al guardar personas:' + error)
     );
+  }
 
+  cargarPersonas() {
+    return this.httpClient.get('https://listado-personas-1d4a5.firebaseio.com/datos.json');
   }
 }

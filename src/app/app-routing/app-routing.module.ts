@@ -1,3 +1,4 @@
+import { LoginGuard } from './../login/login-guard.service';
 import { LoginComponent } from './../login/login.component';
 import { ErrorComponent } from './../error/error.component';
 import { FormularioComponent } from './../personas/formulario/formulario.component';
@@ -8,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', component: PersonasComponent },
   {
-    path: 'personas', component: PersonasComponent,
+    path: 'personas', component: PersonasComponent, canActivate: [LoginGuard],
     children: [
       { path: 'agregar', component: FormularioComponent },
       { path: ':id', component: FormularioComponent } // editar
